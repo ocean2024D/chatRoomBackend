@@ -3,9 +3,10 @@ from flask_socketio import SocketIO, emit, join_room, leave_room
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "https://chatroomfront.onrender.com"}})  # Allow front-end to access backend
-socketio = SocketIO(app, cors_allowed_origins="https://chatroomfront.onrender.com")
+CORS(app, resources={r"/*": {"origins": "http://localhost:5174"}})  # CORS yapılandırması
+socketio = SocketIO(app, cors_allowed_origins="http://localhost:5174")
 
+# Kullanıcıları bir odaya ekle ve mesaj gönder
 @socketio.on('join')
 def on_join(data):
     username = data['username']
@@ -13,6 +14,7 @@ def on_join(data):
     join_room(room)
     emit('message', {'username': 'Server', 'message': f'{username} has joined the room.'}, room=room)
 
+# Kullanıcı bir odadan çıkarsa
 @socketio.on('leave')
 def on_leave(data):
     username = data['username']
@@ -20,6 +22,7 @@ def on_leave(data):
     leave_room(room)
     emit('message', {'username': 'Server', 'message': f'{username} has left the room.'}, room=room)
 
+# Mesaj gönderme
 @socketio.on('send_message')
 def handle_message(data):
     room = data['room']
