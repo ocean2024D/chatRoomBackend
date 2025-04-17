@@ -3,8 +3,8 @@ from flask_socketio import SocketIO, emit, join_room, leave_room
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "https://chatroomfront.onrender.com/"}})
-socketio = SocketIO(app, cors_allowed_origins="https://chatroomfront.onrender.com/")
+CORS(app, resources={r"/*": {"origins": "https://chatroomfront.onrender.com"}})  # Allow front-end to access backend
+socketio = SocketIO(app, cors_allowed_origins="https://chatroomfront.onrender.com")
 
 @socketio.on('join')
 def on_join(data):
