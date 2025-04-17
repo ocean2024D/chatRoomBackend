@@ -3,9 +3,8 @@ from flask_socketio import SocketIO, emit, join_room, leave_room
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "http://localhost:5173"}})  # CORS yapılandırması
-socketio = SocketIO(app, cors_allowed_origins="http://localhost:5173")
-
+CORS(app, resources={r"/*": {"origins": "https://chatroomfront.onrender.com"}})
+socketio = SocketIO(app, cors_allowed_origins="https://chatroomfront.onrender.com")
 
 @socketio.on('join')
 def on_join(data):
@@ -14,14 +13,12 @@ def on_join(data):
     join_room(room)
     emit('message', {'username': 'Server', 'message': f'{username} has joined the room.'}, room=room)
 
-
 @socketio.on('leave')
 def on_leave(data):
     username = data['username']
     room = data['room']
     leave_room(room)
     emit('message', {'username': 'Server', 'message': f'{username} has left the room.'}, room=room)
-
 
 @socketio.on('send_message')
 def handle_message(data):
