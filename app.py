@@ -3,7 +3,7 @@ from flask_socketio import SocketIO, emit, join_room, leave_room
 from flask_cors import CORS
 import os
 import eventlet
-eventlet.monkey_patch()  # WebSocket desteği için
+eventlet.monkey_patch() 
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "https://chatroomfront.onrender.com"}})
@@ -31,5 +31,5 @@ def handle_message(data):
     emit('message', {'username': username, 'message': message}, room=room)
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))  # Render otomatik PORT gönderir
+    port = int(os.environ.get('PORT', 5000)) 
     socketio.run(app, host='0.0.0.0', port=port)
