@@ -1,9 +1,10 @@
+import eventlet
+eventlet.monkey_patch()
+
 from flask import Flask
 from flask_socketio import SocketIO, emit, join_room, leave_room
 from flask_cors import CORS
 import os
-import eventlet
-eventlet.monkey_patch() 
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "https://chatroomfront.onrender.com"}})
