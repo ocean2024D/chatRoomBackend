@@ -1,8 +1,8 @@
 
+Flask
+flask-cors
 
-Flask==2.2.5
-flask-cors==3.0.10
-flask-socketio==5.3.4
-python-socketio==5.8.0
-eventlet==0.33.3
+gunicorn
+flask-socketio
+eventlet
 
