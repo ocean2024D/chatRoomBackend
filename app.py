@@ -3,8 +3,8 @@ from flask_socketio import SocketIO, emit, join_room, leave_room
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "http://localhost:5174"}})  # CORS yapılandırması
-socketio = SocketIO(app, cors_allowed_origins="http://localhost:5174")
+CORS(app, resources={r"/*": {"origins":"https://chatroomfront.onrender.com"}})  # CORS yapılandırması
+socketio = SocketIO(app, cors_allowed_origins="https://chatroomfront.onrender.com")
 
 # Kullanıcıları bir odaya ekle ve mesaj gönder
 @socketio.on('join')
